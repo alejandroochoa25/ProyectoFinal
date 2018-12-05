@@ -1,0 +1,55 @@
+<html>
+ <head>
+     <meta charset="utf-8"> 
+     <Title> Proyecto Final </Title>
+     <h1>Proyecto Final</h1>
+     
+     <p> <u>Configurar la Red Anfitrion: </u> El primer paso para configurar la red anfitrion es ir a "Herramientas globales" y una vez en ese apartado daremos click en "Crear" que se encuentra en la parte superior izquierda y una vez que hayamos hecho eso se creara la tarjeta #2 y en la parte derecha la habilitamos.
+     Luego una vez seleccionada la maquina virtual que creamos nos vamos a "Configuracion" y vamos al apartado de "Red", entonces nos dirigimos al "Adaptador 2" y ahi seleccionamos "Habilitar adaptador de red", luego lo dejamos Conectado a red solo anfitrion y despues cambiamos el nombre a VirtualBox Host-only Ethernet Adapter #2, une vez hecho esto tenemos el Adaptador de red anfitrion listo para ser usado.</p>
+    
+     <p> <u>Actualizar los paquetes: </u>Para actualizar los paquetes tenemos que insertar el codigo siguiente: sudo apt update, al darle enter para que busque las actualizaciones disponibles te pedira la contraseña del usuario.
+     Para instalar los paquetes tendremos que insertar el codigo siguiente: sudo apt upgrade, al momento de darle enter cargaran todos los paquetes que podemos actualizar y nos pedira una confirmacion de si queremos actualizar los paquetes.</p>
+     
+     <p><u>Instalacion de paquetes de Ubuntu: </u>Ya que tengamos actualizados los paquetes de Ubuntu, procederemos a instalar los siguientes servicios PHP, MySQL, Apache con los siguientes comandos: sudo apt install php mysql-server apache2 php-mysql.</p>
+     
+     <p><u>Activacion de servicios: </u>Para Activar los servicios tenemos que insertar estos comandos:
+     sudo service apache 2 start      sudo service mysql start.</p>
+     
+     <p><u>Clonado del repositorio: </u>Para clonar el repositorio tenemos que movernos a la carpeta html con el comando cd /var/www/html, ya que nos movamos de carpeta tenemos que insertar el siguiente comando sudo git clone https://github.com/dgeti-cetis108/Programacion-M4S2-2018.git Ya que este clonado el repositorio tendremos que cambiarle el nombre con el comando: sudo mv Programacion-M4S2-2018/library.com .</p>
+     
+     <p><u>Creacion usuario MySQL: </u>Para crear un usuario usa el comando: creat user 'alejandro' @'localhost' identified by 'cetis luego tememos que dar permisos de administrador con el comando: grant all on library.* to 'alejandro'@'localhost'.</p>
+     
+     <p><u>Modificar usuario y contraseña: </u>Para cambiar el usuario y contraseña ponemos el siguiente comando: cd library.com/classes y /library.com/classes$ sudo nano conexion.php en la ventana que nos aparecera tendremos que editar el usuario y contraseña que hicimos anteriormente.</p>
+     
+     <p><u>Configuracion del VirtualHost: </u>Lo primero que tenemos que hacer es entrar a la carpeta /etc/apache2/sites-available ,una vez en esa carpeta escribiremos sudo nano library.com.conf para proceder a modificarlo.</p>
+     <p>Dentro del archivo, escribe el codigo que se encuentra a continuacion:</p>
+     <ul>
+         <li>VirtualHost*:80></li>
+         <li>Server Name library.com </li>
+         <li>Server Alias www.library.com </li>
+         <li> Server Admin carlosalejandro@gmail.com (ejemplo)</li>
+         <li>DocumentRoot /var/log/library.com-error.log</li>
+         <li>CustomLog /var/log/library.com-acces.log. common</li>
+         <li>ServerName</li>
+         <li>/VirtualHost></li>
+         <li> ADVERTENCIA: ANTES DE CADA VIRTUALHOST lleva otra flechita pero inversa a con la que finaliza. </li>
+    </ul>
+     <p>Revisa que tus carpetas estén en el siguiente orden /etc/apache2/sites-available/ escribiendo el comando ls .</p>
+     <p>En la carpeta sites-available escribe:
+         sudo a2ensite library.com (para habilitar el dominio)</p>
+     <p>Reinicia el servicio de apache con el comando sudo service apache2 restart</p>
+     <p>Entra a la carpeta /etc/hosts/ y agrega lo siguiente:</p>
+     <ul>
+         <li>127.0.0.1 library.com</li>
+         <li>127.0.0.1 www.library.com</li>
+     </ul>
+     <p>Guarda los cambios mediante Ctrl+O</p>
+     <p>Una vez fuera de la maquina virtual en consola entra a la siguiente carpeta: /etc/hosts y agrega el ip de la red anfitrion + nombre del dominio. Por ejemplo: </p>
+     <ul>
+         <li>192.168.56.101 library.com</li>
+         <li>192.168.56.101 www.library.com</li>
+     </ul>
+    
+     
+ </head>
+</html>
